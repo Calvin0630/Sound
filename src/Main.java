@@ -1,5 +1,9 @@
+import java.io.File;
+
 import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
@@ -16,9 +20,17 @@ public class Main {
 
 		try {
 			Frame frame = new Frame();
+			
 			TargetDataLine targetLine = (TargetDataLine) AudioSystem.getLine(targetInfo);
 			targetLine.open(format);
 			targetLine.start();
+			
+			/*
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("D:\\Users\\Calvin\\workspace\\Sound\\music\\Gods_Robots-Break_the_spell.wav"));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			*/
 			
 			SourceDataLine sourceLine = (SourceDataLine) AudioSystem.getLine(sourceInfo);
 			sourceLine.open(format);
@@ -29,7 +41,6 @@ public class Main {
 			
 			while (true) {
 				numBytesRead = targetLine.read(targetData, 0, targetData.length);
-				System.out.println(numBytesRead);
 				if (numBytesRead == -1)	break;
 
 				sourceLine.write(targetData, 0, numBytesRead);
