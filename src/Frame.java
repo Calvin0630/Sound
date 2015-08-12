@@ -31,7 +31,6 @@ public class Frame extends JFrame implements ItemListener{
 		button.setLocation(0, 0);
 		button.setEnabled(true);
 		button.addActionListener(new ButtonUpdateListener());
-		button.setMnemonic(KeyEvent.VK_ALT);
 		add(button, BorderLayout.NORTH);
 		
 		JCheckBox box = new JCheckBox("Is Updating Wave");

@@ -54,6 +54,10 @@ public class Component extends JComponent {
 		int rectHeight;
 		int numOfRectsDrawn = (int) (percent * 17640);
 		for (int i=0;i<numOfRectsDrawn;i+=skipRate) {
+			//colouring the wave
+			if (i%2 == 0) g2.setColor(Color.BLUE);
+			else g2.setColor(Color.RED);
+			
 			rectHeight = (int)  wave[i];
 			if (rectHeight >= 0) rects[i] = new Rectangle((i/skipRate) * squareWidth, originY, squareWidth, rectHeight);
 			else rects[i] = new Rectangle((i/skipRate) * squareWidth, originY + rectHeight, squareWidth, -rectHeight);
