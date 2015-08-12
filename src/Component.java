@@ -41,7 +41,7 @@ public class Component extends JComponent {
 			for (int i=0;i<soundArray.length;i++) {
 				wave[i] = ((double) soundArray[i]);
 			}
-			filter(wave);
+			//filter(wave);
 			//fftDo.realForward(wave);
 			drawWave(g2, wave, 1,  .25, 1);
 		}
@@ -66,9 +66,14 @@ public class Component extends JComponent {
 	}
 	
 	public void filter(double[] wave) {
+		boolean flipped = false;
 		for (int i=1;i<17636;i+=2) {
 			wave[i] = wave[i-1];
-			System.out.println(wave[i]- wave[i+1]);
+			/*
+			if (!flipped) wave[i] = wave[i-1];   
+			else wave[i + 1] = wave[i];
+			if(Math.abs(wave[i] -wave[i+2]) > 10) flipped = true;
+			*/
 		}
 	}
 	
